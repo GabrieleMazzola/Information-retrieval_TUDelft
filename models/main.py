@@ -5,7 +5,7 @@ from sklearn.preprocessing import MultiLabelBinarizer
 from skmultilearn.problem_transform import ClassifierChain
 
 # use this path from Matteo's laptop
-data_path = "..\\data\\features_extracted.csv"
+data_path = "..\\data\\extracted_Features.csv"
 
 data_raw = pd.read_csv(data_path)
 data_raw.set_index("Unnamed: 0", inplace=True)

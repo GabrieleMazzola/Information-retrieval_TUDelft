@@ -53,4 +53,4 @@ if __name__ == '__main__':
 
     # df['label'] = df['label'].apply(lambda tags: tags.split(" "))
 
-    df.to_csv("../data/features_extracted.csv")
+    df.to_csv("../data/extracted_Features.csv")

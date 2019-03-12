@@ -5,7 +5,7 @@ from sklearn.preprocessing import MultiLabelBinarizer
 
 from res.util import get_subset_features, test_AdaBoost
 
-ir_data = pd.read_csv("../data/features_extracted.csv")
+ir_data = pd.read_csv("../data/extracted_Features.csv")
 ir_data.drop('Unnamed: 0', inplace=True, axis=1)
 
 label = list(ir_data["label"])

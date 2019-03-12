@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.multioutput import ClassifierChain
 from sklearn.preprocessing import MultiLabelBinarizer
 
-ir_data = pd.read_csv("../../data/features_extracted.csv")
+ir_data = pd.read_csv("../../data/extracted_Features.csv")
 ir_data.drop('Unnamed: 0', inplace=True, axis=1)
 
 label = list(ir_data["label"])

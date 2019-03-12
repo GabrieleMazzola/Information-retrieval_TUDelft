@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.multioutput import ClassifierChain
 from sklearn.preprocessing import MultiLabelBinarizer
 
-ir_data = pd.read_csv("../../data/features_extracted.csv")
+ir_data = pd.read_csv("../../data/extracted_Features.csv")
 ir_data.drop('Unnamed: 0', inplace=True, axis=1)
 
 label = list(ir_data["label"])
@@ -36,22 +36,3 @@ classifier = ClassifierChain(clf)
 classifier.fit(X_train, y_train)
 predicted_labels = classifier.predict(X_test)
 
-diffr_y_test = []
-diffr_predicted_labels = []
-
-print(y_test[0] == predicted_labels[0])
-
-for i in range(0, len(y_test)):
-    if not list_comparison(y_test[i], predicted_labels[i]):
-        diffr_y_test.append(y_test[i])
-        diffr_predicted_labels.append(predicted_labels[i])
-
-d = {"True labels": list(diffr_y_test), "Predicted labels": list(diffr_predicted_labels)}
-
-analysis = pd.DataFrame(d)
-print(analysis)
-
-analysis.to_csv("partial_misclassification_analysis.csv")
-
-print(f"Total length: {len(y_test)}")
-print(f"Misclassified length: {len(diffr_y_test)}")
