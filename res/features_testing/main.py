@@ -3,9 +3,9 @@ import pickle
 import pandas as pd
 from sklearn.preprocessing import MultiLabelBinarizer
 
-from res.util import get_subset_features, test_best_rf, test_best_AdaBoost
+from res.util import get_subset_features, test_best_AdaBoost
 
-ir_data = pd.read_csv("../../data/processed_dataset.csv")
+ir_data = pd.read_csv("../../data/features_extracted.csv")
 ir_data.drop('Unnamed: 0', inplace=True, axis=1)
 
 label = list(ir_data["label"])

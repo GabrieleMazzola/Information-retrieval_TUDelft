@@ -1,13 +1,14 @@
+import itertools as it
+
+import numpy as np
+from sklearn import svm
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.model_selection import KFold, cross_val_score
 from sklearn.multioutput import ClassifierChain
-import itertools as it
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
-from sklearn import svm
 from skmultilearn.adapt import MLkNN
-from sklearn.model_selection import GridSearchCV
-import numpy as np
+
 
 def test_features(df, truth, eval_type):
     models = [('LDA', LinearDiscriminantAnalysis())]
@@ -156,11 +157,10 @@ def test_naiveBayes(df, truth, eval_type):
 def test_mlknn(df, truth, eval_type):
     parameters = {'k': range(1, 4), 's': [0.5, 0.7, 1.0]}
     kfold = KFold(n_splits=10, random_state=26)
-    #print("Start gridsearch")
-    #clf = GridSearchCV(MLkNN(), parameters, scoring=eval_type, cv=kfold)
-    #clf.fit(df, truth)
-    #print(f"Gridsearch completed. Best params: {clf.best_params_}")
-
+    # print("Start gridsearch")
+    # clf = GridSearchCV(MLkNN(), parameters, scoring=eval_type, cv=kfold)
+    # clf.fit(df, truth)
+    # print(f"Gridsearch completed. Best params: {clf.best_params_}")
 
     best_classifier = MLkNN(k=3, s=0.5)
     print("Start Crossval")

@@ -1,10 +1,11 @@
-import pandas as pd
-from sklearn.preprocessing import MultiLabelBinarizer
 import pickle
 
-from res.util import get_subset_features, test_features, test_AdaBoost, test_mlknn
+import pandas as pd
+from sklearn.preprocessing import MultiLabelBinarizer
 
-ir_data = pd.read_csv("../data/processed_dataset.csv")
+from res.util import get_subset_features, test_AdaBoost
+
+ir_data = pd.read_csv("../data/features_extracted.csv")
 ir_data.drop('Unnamed: 0', inplace=True, axis=1)
 
 label = list(ir_data["label"])
@@ -28,13 +29,11 @@ feat_to_test.append(('All', struct_feat + sent_feat + cont_feat))
 
 types_of_score = ['accuracy', 'precision_samples', 'recall_samples', 'f1_samples']
 
-
-
-#with open('adaboost.p', 'rb') as fin:
+# with open('adaboost.p', 'rb') as fin:
 #    res = pickle.load(fin)
 
 
-#Tests for AdaBoost
+# Tests for AdaBoost
 res_dict = {}
 for name, feature_names in feat_to_test:
     df = get_subset_features(ir_data, feature_names)

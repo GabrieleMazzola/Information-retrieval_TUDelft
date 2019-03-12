@@ -1,12 +1,13 @@
+import pickle
+
 import pandas as pd
 from sklearn.preprocessing import MultiLabelBinarizer
-import pickle
 
 from res.util import get_subset_features
 
 
 def test_on_all(test_function, filename_dict):
-    ir_data = pd.read_csv("../../data/processed_dataset.csv")
+    ir_data = pd.read_csv("../../data/features_extracted.csv")
     ir_data.drop('Unnamed: 0', inplace=True, axis=1)
 
     label = list(ir_data["label"])
@@ -23,7 +24,6 @@ def test_on_all(test_function, filename_dict):
     feat_to_test.append(('All', struct_feat + sent_feat + cont_feat))
 
     types_of_score = ['accuracy', 'precision_samples', 'recall_samples', 'f1_samples']
-
 
     res_dict = {}
     for name, feature_names in feat_to_test:

@@ -1,11 +1,12 @@
+import pandas as pd
+from nltk.corpus import opinion_lexicon
 from nltk.tokenize import word_tokenize
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-import pandas as pd
+
 from features.extraction import extract_content_features, extract_structural_features, extract_sentimental_features
 from processing.processing import get_dialogs_corpus
-from nltk.corpus import opinion_lexicon
 
 
 def extract_features(corpus):
@@ -21,7 +22,6 @@ def extract_features(corpus):
         similarity_matrix = cosine_similarity(tfidf)
 
         starter_user_id = dialog[0][1]
-
 
         for utterance_index, utt_info in enumerate(dialog[:-1]):
             utterance = utt_info[0]
@@ -51,6 +51,6 @@ if __name__ == '__main__':
     df.columns = feature_names
     df['label'] = labels
 
-    #df['label'] = df['label'].apply(lambda tags: tags.split(" "))
+    # df['label'] = df['label'].apply(lambda tags: tags.split(" "))
 
-    df.to_csv("../data/processed_dataset.csv")
+    df.to_csv("../data/features_extracted.csv")

@@ -1,6 +1,7 @@
 import pickle
 from os import listdir
 from os.path import isfile, join
+
 import numpy as np
 
 mypath = "./"
@@ -13,9 +14,7 @@ for file in results:
         res = pickle.load(fin)
         res_dicts.append(res)
 
-
 # Accuracy
 for res_dict in res_dicts:
     for model_configuration_key, scores in res_dict['All']['accuracy']:
         print(model_configuration_key, np.mean(scores), np.std(scores))
-

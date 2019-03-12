@@ -1,7 +1,9 @@
+import re
+
+import numpy as np
 from nltk.corpus import *
 from nltk.stem.porter import *
-import re
-import numpy as np
+
 
 # nltk.download('stopwords')
 # nltk.download('punkt')
